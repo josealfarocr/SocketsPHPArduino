@@ -1,0 +1,41 @@
+<?php 
+
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//////////////////CONEXION Y ENVIO DE DATOS VIA UDP/////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+
+
+//IP Y PUERTO DEL MICROCONTROLADOR
+$ip_microcontrolador = "181.194.205.126";
+$puerto_microcontrolador = "8888";
+
+//DATO A ENVIAR
+$dato = "";
+
+
+
+	//CREACION DEL SOCKET
+    $socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP) or die("No se pudo crear el socket");
+	
+	//TAMAÑO DEL DATAGRAMA
+    $tamano = strlen($dato);
+
+	//ENVIO DE DATOS MEDIANTE SOCKET
+    socket_sendto($socket, $dato, $tamano, 0, $ip_microcontrolador, $puerto_microcontrolador);
+
+			
+		//LECTURA DE RESPUESTA DEL MICROCONTROLADOR
+		$respuesta = socket_read($socket, 2048);
+		echo "<br>Respuesta Matriz: ".$respuesta;
+
+				//CIERRE DE CONEXION
+				socket_close($socket);
+
+
+?>
