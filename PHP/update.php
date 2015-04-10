@@ -32,7 +32,7 @@ $dato = "";
 			
 		//LECTURA DE RESPUESTA DEL MICROCONTROLADOR
 		$respuesta = socket_read($socket, 2048);
-		echo "<br>Respuesta Matriz: ".$respuesta;
+		echo "<br>Respuesta Arduino: ".$respuesta;
 
 				//CIERRE DE CONEXION
 				socket_close($socket);
